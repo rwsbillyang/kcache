@@ -77,8 +77,10 @@ interface CacheInterface
     // 删除缓存中的所有数据。需要注意的是，具体实现中只删除使用@Cacheable注解缓存的所有数据，不要影响应用内的其他缓存
     fun clear()
 }
-
-class CaffeineCache(val maxEntries:Long = 10000L,
+/**
+ * expire 600s after write or read
+ * */
+open class CaffeineCache(val maxEntries:Long = 10000L,
                     val expireAfterWriteSeconds:Long = 600L,
                     val expireAfterAccessSeconds:Long = 600L): CacheInterface{
     override var name: String?
